@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+         There is a place for captcha somewhere here
+         <div>
+             <img th:src="@{'data:image/jpeg;base64,'+${noisyImage}}" alt=""/>
+         </div>
+         <form th:action="@{/save}" method="POST">
+             <input type="hidden" name="hiddenCaptcha" th:value="${hiddenCaptcha}">
+             <input type="text" name="captchaText">
+             <div class="g-recaptcha" data-sitekey="6LfnYPkfAAAAAPzp1RtB2eWItWbwdyqE4_Km52_X"></div>
+             <br/>
+             <input type="submit" value="Submit">
+         </form>
+
+        <div th:if="${errorMessage != null}">
+            <span th:text="${errorMessage}"></span>
+        </div>
+</body>
+</html>
